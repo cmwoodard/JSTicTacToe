@@ -1,0 +1,75 @@
+body{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+#containerContainer{
+    display: flex;
+    width: 500px;
+    margin: auto;
+    text-align: center;
+}
+#container{
+    flex: 0 0 70%;
+    width: 300px;
+    height: 300px;
+    margin:auto;
+    display: flex;
+    flex-wrap: wrap; 
+    user-select: none;
+    -webkit-user-select: none; /* Chrome/Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+}
+.box{
+    flex: 0 0 32%;
+    text-align: center;
+    vertical-align: center;
+    line-height: 100px;
+    font-size: 50px;
+    color: white;
+    font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.activeBox{
+    color: black;
+}
+#title{
+    margin: auto;    
+    font-size: 40px;
+    text-decoration: underline;
+}
+#titleContainer{
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-bottom: 30px;
+    margin-left: -4%;
+}
+.randomText{
+    margin-top: 5px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+#score{
+    text-decoration: underline; 
+}
+.box:nth-child(3n){
+    border-left: 1px solid black;
+}
+.box:nth-child(3n-2){
+    border-right: 1px solid black;
+}
+.box:nth-child(1){
+    border-bottom: 1px solid black;
+}
+.box:nth-child(2){
+    border-bottom: 1px solid black;
+}
+.box:nth-child(3){
+    border-bottom: 1px solid black;
+}
+.box:nth-child(4){
+    border-bottom: 1px solid black;
+}
+.box:nth-child(5){
+    border-bottom: 1px solid black;
+}
+.box:nth-child(6){
+    border-bottom: 1px solid black;
+}
