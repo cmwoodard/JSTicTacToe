@@ -7,7 +7,7 @@ $(document).ready(function () {
         score1: 0,
         score2: 0,
         turns: 0,
-        winner: 1,
+        winner: 0,
         currentPlayer: 1,
     };
     //gameBoard = new Board();    
@@ -21,7 +21,7 @@ $(document).ready(function () {
             gameBoard.boardAry[boxIndex] = gameBoard.currentPlayer;
             $(this).addClass('activeBox');
 
-            
+            gameStatus = checkStatus(gameBoard);
             if(gameBoard.currentPlayer == 1){
                 $(this).text("O");                
                 gameBoard.currentPlayer = 2;
@@ -29,8 +29,7 @@ $(document).ready(function () {
             else{
                 $(this).text("X");
                 gameBoard.currentPlayer = 1;
-            }
-            gameStatus = checkStatus(gameBoard);
+            }            
         }
         
         if (gameStatus){          
@@ -42,17 +41,26 @@ $(document).ready(function () {
                 var temp = "Player 1:" + gameBoard.score1;
                 $('#score1').text(temp);
             }
-            else{
+            else if(gameBoard.winner == 2){
                 gameBoard.score2 +=1;
                 $('#score2').text("Player 2:" + gameBoard.score2);
             }
             
             setTimeout(
                 function(){
-                    alert("Player " + gameBoard.winner + " has won!");
+                    if(gameBoard.winner != 0){
+                        alert("Player " + gameBoard.winner + " has won!");
+                    }
+                    else{
+                        alert("It's a TIE!");
+                    }
+
                     gameBoard.boardAry = [0, 0, 0, 0, 0, 0, 0, 0, 0];
                     $('.box').text(0);
                     $('.box').removeClass('activeBox');
+                    gameBoard.currentPlayer = 1;
+                    gameBoard.turns = 0;
+                    
             }, 50);
             
         }        
@@ -108,14 +116,22 @@ function checkStatus(board){
         return true;
     }
 
-	while(i--){        
-		if(board.boardAry[i] == 0){
-            zeroCount+=1;            
-        }        
-	}	
-    if(zeroCount == 0){
+    //forward slash diagonal win
+    if((board.boardAry[0] >0) && (board.boardAry[0] == board.boardAry[4]) && (board.boardAry[0] == board.boardAry[8])){
+        board.winner = board.currentPlayer;
         return true;
     }
+    //back slash diagonal win
+    if((board.boardAry[2] >0) && (board.boardAry[2] == board.boardAry[4]) && (board.boardAry[2] == board.boardAry[6])){
+        board.winner = board.currentPlayer;
+        return true;
+    }
+
+	if (board.turns == 9){
+        board.winner = 0;
+        return true;
+    }
+
     return false;
 }
 
